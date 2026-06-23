@@ -1,0 +1,336 @@
+/* ══════════════════════════════════════════════════════
+   POSH Survey Form — Matrimony-inspired elegant theme
+   Same brand palette (pink #CD366B / navy #2C3D83 / gold #E0B978)
+   but used as soft tonal shades — warm, light, serif headings.
+   ══════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Tiro+Devanagari+Marathi&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
+
+:root {
+  --pink:        #CD366B;
+  --pink-light:  #E94584;
+  --pink-tint:   #FBE9EF;   /* very light pink tint for backgrounds */
+  --pink-tint-2: #F6D9E3;   /* slightly deeper tint for cards/borders */
+  --blue:        #2C3D83;
+  --navy-deep:   #131B4D;
+  --navy-mid:    #1E2A63;
+  --navy-tint:   #EFF1F8;   /* soft tinted-navy off-white */
+  --yellow:      #E0B978;
+  --yellow-soft: #F3E3C8;
+  --yellow-tint: #FBF3E4;   /* very light gold tint for badge backgrounds */
+  --green:       #4ADE80;
+  --red:         #F87171;
+
+  --text-dark:   #2A2438;          /* warm near-black for body text */
+  --text-dim:    rgba(42,36,56,0.62);
+  --text-dimmer: rgba(42,36,56,0.40);
+  --text-light:  #FFFFFF;
+}
+
+* { box-sizing: border-box; }
+
+.psf-root {
+  min-height: 100vh;
+  width: 100%;
+  background: #2C3D83;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  position: relative;
+  overflow-x: hidden;
+  padding: 48px 20px 60px;
+}
+
+.psf-bg-shape { position: absolute; pointer-events: none; }
+.psf-bg-shape--tri {
+  top: 50px; right: 8%;
+  width: 0; height: 0;
+  border-left: 38px solid transparent;
+  border-right: 38px solid transparent;
+  border-bottom: 66px solid rgba(205,54,107,0.08);
+}
+.psf-bg-shape--circle {
+  top: 320px; right: 4%;
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(205,54,107,0.14);
+}
+
+.psf-container {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+  margin: 0 auto;
+  background: #FFFFFF;
+  border-radius: 22px;
+  box-shadow: 0 24px 60px rgba(44,61,131,0.14);
+  overflow: hidden;
+}
+
+/* ── Header band (top of unified card, matrimony hero style) ── */
+.psf-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  background: linear-gradient(160deg, var(--pink-tint) 0%, #FDF6EF 55%, var(--yellow-tint) 100%);
+  border-bottom: 1px solid var(--pink-tint-2);
+  padding: 30px 32px 26px;
+  position: relative;
+}
+
+.psf-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(224,185,120,0.22);
+  border: 1px solid rgba(224,185,120,0.55);
+  color: #9A6B23;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 999px;
+}
+
+.psf-header-left { display: flex; align-items: center; justify-content: center; gap: 14px; }
+.psf-icon {
+  width: 44px; height: 44px;
+  background: linear-gradient(135deg, var(--pink-light), var(--pink));
+  border-radius: 13px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 18px rgba(205,54,107,0.30);
+  flex-shrink: 0;
+}
+.psf-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 30px;
+  font-weight: 600;
+  color: var(--blue);
+  letter-spacing: -0.2px;
+}
+.psf-title em {
+  font-style: normal;
+  font-weight: 700;
+  color: var(--pink);
+}
+
+.psf-subtitle {
+  font-size: 13.5px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+
+.psf-header-divider {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--yellow);
+  margin-top: 2px;
+}
+
+.psf-lang-toggle {
+  display: flex;
+  background: rgba(255,255,255,0.7);
+  border: 1px solid var(--pink-tint-2);
+  border-radius: 12px;
+  padding: 4px;
+  gap: 4px;
+  position: absolute;
+  top: 26px;
+  right: 32px;
+}
+.psf-lang-btn {
+  padding: 8px 18px;
+  border: none;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.psf-lang-btn--active {
+  background: linear-gradient(135deg, var(--pink-light), var(--pink));
+  color: white;
+  box-shadow: 0 4px 12px rgba(205,54,107,0.35);
+}
+.psf-lang-btn:not(.psf-lang-btn--active):hover { color: var(--blue); }
+
+.psf-body {
+  padding: 26px 32px 32px;
+}
+
+/* ── Progress ── */
+.psf-progress-card {
+  background: var(--navy-tint);
+  border: 1px solid var(--pink-tint-2);
+  border-left: 3px solid var(--yellow);
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin-bottom: 22px;
+}
+.psf-progress-label {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 10px;
+}
+.psf-progress-track {
+  height: 7px;
+  background: var(--pink-tint);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.psf-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--pink), var(--pink-light));
+  border-radius: 99px;
+  box-shadow: 0 0 10px rgba(205,54,107,0.4);
+  transition: width 0.35s ease;
+}
+
+/* ── Part Title ── */
+.psf-part-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 21px;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--blue);
+  line-height: 1.4;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  padding-left: 16px;
+  border-bottom: 2px solid var(--pink-tint-2);
+  position: relative;
+}
+.psf-part-title::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 6px;
+  width: 5px; height: 22px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, var(--pink), var(--yellow));
+}
+
+/* ── Questions ── */
+.psf-questions {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 26px;
+}
+.psf-q-card {
+  background: var(--navy-tint);
+  border: 1px solid var(--pink-tint-2);
+  border-left: 3px solid transparent;
+  border-radius: 14px;
+  padding: 18px 20px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.psf-q-card:hover {
+  border-color: var(--pink);
+  border-left-color: var(--yellow);
+  box-shadow: 0 8px 22px rgba(205,54,107,0.12);
+}
+.psf-q-text {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--blue);
+  margin-bottom: 14px;
+}
+.psf-q-no {
+  color: var(--pink);
+  font-weight: 800;
+  margin-right: 2px;
+}
+.psf-q-options {
+  display: flex;
+  gap: 10px;
+}
+.psf-opt {
+  flex: 1;
+  padding: 11px 0;
+  border-radius: 10px;
+  border: 1px solid var(--pink-tint-2);
+  background: #FFFFFF;
+  color: var(--blue);
+  font-size: 13.5px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+.psf-opt:hover { background: var(--pink-tint); color: var(--blue); border-color: var(--pink); box-shadow: 0 4px 14px rgba(224,185,120,0.30); }
+.psf-opt--yes.psf-opt--active {
+  background: linear-gradient(135deg, #34D399, var(--green));
+  color: #0B3622;
+  border-color: transparent;
+  box-shadow: 0 6px 16px rgba(74,222,128,0.3);
+}
+.psf-opt--no.psf-opt--active {
+  background: linear-gradient(135deg, #F87171, #EF4444);
+  color: #450A0A;
+  border-color: transparent;
+  box-shadow: 0 6px 16px rgba(248,113,113,0.3);
+}
+
+/* ── Nav Buttons ── */
+.psf-btn-row {
+  display: flex;
+  gap: 12px;
+  position: sticky;
+  bottom: 16px;
+}
+.psf-btn {
+  flex: 1;
+  padding: 15px;
+  border-radius: 12px;
+  border: none;
+  font-size: 14.5px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.psf-btn--primary {
+  background: linear-gradient(135deg, var(--pink-light), var(--pink));
+  color: white;
+  box-shadow: 0 10px 26px rgba(205,54,107,0.35), 0 0 0 1px rgba(224,185,120,0.35) inset;
+  letter-spacing: 0.2px;
+}
+.psf-btn--primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(205,54,107,0.45);
+}
+.psf-btn--primary:disabled { opacity: 0.55; cursor: not-allowed; }
+.psf-btn--ghost {
+  flex: 0.55;
+  background: #FFFFFF;
+  backdrop-filter: blur(8px);
+  color: var(--blue);
+  border: 1px solid var(--pink-tint-2);
+  box-shadow: 0 6px 16px rgba(44,61,131,0.06);
+}
+.psf-btn--ghost:hover:not(:disabled) { background: var(--pink-tint); border-color: var(--pink); }
+
+/* ── Marathi font ── */
+.psf-root:lang(mr),
+.psf-part-title:lang(mr),
+.psf-eyebrow:lang(mr),
+.psf-subtitle:lang(mr),
+.psf-q-text:lang(mr) {
+  font-family: 'Tiro Devanagari Marathi', serif;
+}
+
+/* ── Responsive ── */
+@media (max-width: 560px) {
+  .psf-header { padding-top: 64px; }
+  .psf-lang-toggle { position: static; margin-top: 14px; }
+  .psf-q-options { flex-direction: column; }
+  .psf-btn-row { position: static; }
+}

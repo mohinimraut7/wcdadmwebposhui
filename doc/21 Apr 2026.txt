@@ -1,0 +1,160 @@
+const sendOtp = async () => {
+    const mobile = mobileNo.trim();
+    if (!/^[0-9]{10}$/.test(mobile)) { toast.error("10 अंकी valid mobile number टाका!"); return; }
+    setOtpLoading(true);
+    const newOtp = Math.floor(100000 + Math.random() * 900000).toString();
+    const corporation="VVCMC";
+    const platformShort="VVMCDM"
+    const usr="citizen"
+    const platform="Divyang Kalyan Management System"
+    const apkey="67e12059b220a"
+    const fullName="Citizen"
+    setGeneratedOtp(newOtp);
+    setTimeLeft(60);
+    setCanResend(false);
+    setOtp(["", "", "", "", "", ""]);
+    const smsText = `Dear ${fullName} ${newOtp} is OTP for ${corporation} ${platform} login for ${usr} registration.${corporation}`;
+    const smsApiUrl = `https://1.rapidsms.co.in/api/push.json?apikey=${apkey}&route=&sender=${platformShort}&mobileno=${mobile}&text=${encodeURIComponent(smsText)}`;
+    try {
+      await fetch(smsApiUrl, { method: "GET", mode: "no-cors" });
+      toast.success(`OTP पाठवला ******${mobile.slice(-3)} वर`);
+      setOtpStep("otp");
+      setTimeout(() => otpRefs.current[0]?.focus(), 120);
+    } catch (err) {
+      console.error("Send OTP Error:", err);
+      toast.error("OTP पाठवण्यात अयशस्वी");
+    } finally {
+      setOtpLoading(false);
+    }
+  };
+===================================
+const smsText = `Dear Citizen ${newOtp} is OTP for VVCMC Divyang Kalyan Management System login for citizen registration.VVCMC`;
+    const smsApiUrl = `https://1.rapidsms.co.in/api/push.json?apikey=67e12059b220a&route=&sender=VVMCDM&mobileno=${mobile}&text=${encodeURIComponent(smsText)}`;
+
+
+const smsText = `Dear Citizen ${newOtp} is OTP for VVCMC Jan Samvaad login for citizen registration.VVCMC`;
+const smsApiUrl = `https://1.rapidsms.co.in/api/push.json?apikey=67e12059b220a&route=&sender=VVCMCJS&mobileno=${mobile}&text=${encodeURIComponent(smsText)}`;
+
+
+
+ const newOtp = Math.floor(100000 + Math.random() * 900000).toString();
+    const corporation="VVCMC";
+    const platformShort="VVMCDM"
+    const usr="citizen"
+    const platform="Divyang Kalyan Management System"
+    const apkey="67e12059b220a"
+    const fullName="Citizen"
+    setGeneratedOtp(newOtp);
+    setTimeLeft(60);
+    setCanResend(false);
+    setOtp(["", "", "", "", "", ""]);
+    const smsText = `Dear ${fullName} ${newOtp} is OTP for ${corporation} ${platform} login for ${usr} registration.${corporation}`;
+    const smsApiUrl = `https://1.rapidsms.co.in/api/push.json?apikey=${apkey}&route=&sender=${platformShort}&mobileno=${mobile}&text=${encodeURIComponent(smsText)}`;
+
+======================================
+1) const smsText = Dear ${fullName}, Your appointment with ${officerName} at ${corporation} has been successfully booked. Date: ${formatShort(preferredDate)}, Time Slot: ${microSlot}, Token No: ${tokenId}.- VVCMC Jan Samvaad;
+
+const smsText = Dear ${appt.fullName}, Your appointment with ${appt.officerName} at ${appt.corporation} has been successfully booked. Date: ${formatShort(appt.preferredDate)}, Time Slot: ${appt.slotTime}, Token No: ${appt.tokenId}. Please arrive 5 minutes before your scheduled time. - ${corporation} {platform};
+
+----------------------------------------------------------------------------------------------------
+
+2) const smsText = Dear ${fullName} ${newOtp} is OTP for ${corporation} login for registration.${corporation} ${platform};
+
+const smsApiUrl = https://1.rapidsms.co.in/api/push.json?apikey=67e12059b220a&route=&sender=${corporation}&mobileno=${mobile}&text=${encodeURIComponent(smsText)};
+----------------------------------------------------------------------------------------------------------------------
+
+   const mobile = appt.mobileNumber?.replace(/\D/g, "").slice(-10);
+      const platform="Jan Samvaad";
+      const corporation="VVCMC";
+      const sender="VVCMCJS";
+      const fnamecorporation="Vasai Virar City Municipal Corporation"
+    
+      if (mobile) {
+        const officerName="Repected Mayor Ajiv Patil Sir"
+          console.log("mobile>>>>",mobile,platform,corporation,officerName,sender,appt.preferredDate,formatShort(appt.preferredDate),appt.microSlot,appt.slotTime,appt.tokenId)
+        const whatsupText = `Dear ${appt.fullName}, Your appointment with ${officerName} at ${fnamecorporation} has been successfully booked. Date: ${formatShort(appt.preferredDate)}, Time Slot: ${appt.microSlot || appt.slotTime}, Token No: ${appt.tokenId}. - ${corporation} ${platform}`;
+        
+        const waApiUrl = `https://1.rapidsms.co.in/api/push.json?apikey=67e12059b220a&route=&sender=${sender}&mobileno=${mobile}&text=${encodeURIComponent(whatsupText)}`;
+        
+        fetch(waApiUrl, { method: "GET", mode: "no-cors" }).catch(() => {});
+      }
+      // ─────────────────────────────────────────────────────────────
+
+
+ const mobile = appt.mobileNumber?.replace(/\D/g, "").slice(-10);
+      const platform="Jan Samvaad";
+      const corporation="VVCMC";
+      const sender="VVCMCJS";
+      const fnamecorporation="Vasai Virar City Municipal Corporation"
+    
+      if (mobile) {
+        const officerName="Repected Mayor Ajiv Patil Sir"
+          console.log("mobile>>>>",mobile,platform,corporation,officerName,sender,appt.preferredDate,formatShort(appt.preferredDate),appt.microSlot,appt.slotTime,appt.tokenId)
+        const whatsupText = `Dear ${appt.fullName}, Your appointment with ${officerName} at ${fnamecorporation} has been successfully booked. Date: ${formatShort(appt.preferredDate)}, Time Slot: ${appt.microSlot || appt.slotTime}, Token No: ${appt.tokenId}. - ${corporation} ${platform}`;
+        
+        const waApiUrl = `https://1.rapidsms.co.in/api/push.json?apikey=67e12059b220a&route=&sender=${sender}&mobileno=${mobile}&text=${encodeURIComponent(whatsupText)}`;
+        
+        fetch(waApiUrl, { method: "GET", mode: "no-cors" }).catch(() => {});
+      }
+
+===============================================
+Login for Ciizen :
+const smsText = `Dear Citizen ${newOtp} is OTP for VVCMC Jan Samvaad login for citizen registration.VVCMC`;
+const smsApiUrl = `https://1.rapidsms.co.in/api/push.json?apikey=67e12059b220a&route=&sender=VVCMCJS&mobileno=${mobile}&text=${encodeURIComponent(smsText)}`;
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Citizen booked appointment and reply from admin panel 1 rst initiative level citizen table
+const statusMessage = {
+  pending: `Pending — Awaiting Mayor's Approval`,
+  approved: `Approved by Respected Mayor Ajiv Patil Sir`,
+  rejected: `Rejected by Admin`,
+  cancelled: `Cancelled`
+}[appt.status] || appt.status;
+
+
+
+const whatsupText = `Dear ${appt.fullName}, Your appointment with Repected Mayor Ajiv Patil Sir at Vasai Virar City Municipal Corporation has been successfully booked.
+Appointment is ${statusMessage}.${formatShort(appt.preferredDate)}, Time Slot: ${appt.microSlot || appt.slotTime}, Token No: ${appt.tokenId}. - VVCMC Jan Samvaad`;
+        
+const waApiUrl = `https://1.rapidsms.co.in/api/push.json?apikey=67e12059b220a&route=&sender=VVCMCJS&mobileno=${mobile}&text=${encodeURIComponent(whatsupText)}`;
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+Assign to Department
+
+Special Planning Authority Department HO
+
+Disaster Management Departmengt HO
+
+Handicapped welfare Department HO
+
+Women and Child welfare Department HO
+
+Medical Health Department HO
+
+Transportation / Vehicle Department HO
+
+Legal Department
+
+Fire Brigade Department HO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

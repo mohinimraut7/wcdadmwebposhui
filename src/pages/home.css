@@ -1,0 +1,443 @@
+@import url('https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi&family=Crimson+Pro:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+.home-root { min-height: calc(100vh - 64px); background: #f0fdf4; font-family: 'DM Sans', sans-serif; }
+
+/* ══ HERO ════════════════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: calc(100vh - 64px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 32px 72px;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--hero-bg);
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0.35) 0%,
+    rgba(0,0,0,0.45) 50%,
+    rgba(0,0,0,0.6) 100%
+  );
+  opacity: 1;
+  z-index: 1;
+}
+.hero > * { position: relative; z-index: 2; }
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+  width: 100%;
+  text-align: center;
+}
+
+.hero-top-name {
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-size: clamp(16px, 2.5vw, 22px);
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 18px;
+  display: block;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.hero-marathi-top {
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-size: clamp(16px, 2.5vw, 22px);
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 18px;
+  display: block;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 999px;
+  padding: 6px 18px;
+  margin-bottom: 24px;
+  font-size: 12px;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: .5px;
+}
+.hero-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #fff; box-shadow: 0 0 8px #fff;
+  animation: pulse 2s infinite; flex-shrink: 0;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: .5; transform: scale(1.5); }
+}
+
+.hero-jansanwad {
+  font-family: 'Crimson Pro', serif;
+  font-size: clamp(64px, 11vw, 120px);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.0;
+  margin-bottom: 28px;
+  letter-spacing: -1px;
+}
+.hero-jansanwad .line1 {
+  display: block;
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(40px, 6vw, 72px);
+  letter-spacing: 0px;
+  color: rgba(255,255,255,0.95);
+}
+.hero-jansanwad .line2 {
+  display: block;
+  font-style: normal;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: clamp(56px, 10vw, 110px);
+}
+
+.hero-desc {
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-size: clamp(14px, 2vw, 18px);
+  font-weight: 500;
+  color: rgba(255,255,255,0.92);
+  max-width: 580px;
+  margin: 0 auto 40px;
+  line-height: 1.8;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.25);
+}
+
+.hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.hero-btn-primary {
+  padding: 14px 36px; border-radius: 10px; border: none;
+  background: #ffffff; color: #028945;
+  font-weight: 700; font-size: 15px; cursor: pointer;
+  transition: all .2s; box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+}
+.hero-btn-primary:hover { background: #f0fdf4; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.22); }
+.hero-btn-outline {
+  padding: 14px 36px; border-radius: 10px;
+  border: 2px solid rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(4px);
+  color: #ffffff;
+  font-weight: 700; font-size: 15px; cursor: pointer; transition: all .2s;
+}
+.hero-btn-outline:hover { background: rgba(255,255,255,0.22); transform: translateY(-2px); }
+
+/* ══ MAYOR SECTION ════════════════════════════════════ */
+.mayor-section {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  min-height: 520px;
+}
+
+.mayor-left {
+  flex: 1;
+  background: #F5E6BF;
+  padding: 72px 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.mayor-left::before {
+  content: '';
+  position: absolute;
+  top: -60px; left: -60px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  border: 2px solid rgba(208,154,80,0.25);
+}
+.mayor-left::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; right: 40px;
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  border: 2px solid rgba(208,154,80,0.2);
+}
+
+.mayor-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(208,154,80,0.18);
+  color: #D09A50;
+  font-size: 12px; font-weight: 700;
+  padding: 5px 14px; border-radius: 999px;
+  margin-bottom: 14px; letter-spacing: 0.5px;
+  text-transform: uppercase;
+  width: fit-content;
+}
+.mayor-date { font-size: 13px; color: #a16207; font-weight: 600; margin-bottom: 10px; }
+.mayor-heading {
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-size: clamp(28px, 3.8vw, 48px);
+  font-weight: 800; color: #1a1a1a;
+  line-height: 1.2; margin-bottom: 6px;
+}
+.mayor-heading span { color: #028945; position: relative; }
+.mayor-heading span::after {
+  content: '';
+  position: absolute; bottom: -2px; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #D09A50, #028945);
+  border-radius: 2px;
+}
+.mayor-org {
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-size: 15px; color: #51ABAC; font-weight: 600;
+  margin-bottom: 20px;
+}
+.mayor-divider {
+  width: 56px; height: 4px;
+  background: linear-gradient(90deg, #D09A50, #028945);
+  border-radius: 2px; margin-bottom: 22px;
+}
+.mayor-bio {
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-size: 15px; color: #4b5563;
+  line-height: 1.9; margin-bottom: 36px;
+  max-width: 520px;
+}
+.mayor-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+.mayor-btn-primary {
+  padding: 14px 32px; border-radius: 10px; border: none;
+  background: #028945; color: #fff;
+  font-weight: 700; font-size: 14px; cursor: pointer;
+  transition: all .2s;
+  box-shadow: 0 4px 16px rgba(2,137,69,0.3);
+}
+.mayor-btn-primary:hover { background: #016d38; transform: translateY(-2px); }
+
+.mayor-right {
+  width: 42%;
+  flex-shrink: 0;
+  background: #51ABAC;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.mayor-right-decor1 {
+  position: absolute; top: 20px; right: 20px;
+  width: 90px; height: 90px; border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+}
+.mayor-right-decor2 {
+  position: absolute; bottom: 30px; right: 30px;
+  width: 60px; height: 60px; border-radius: 50%;
+  border: 3px solid rgba(255,255,255,0.15);
+}
+.mayor-right-decor3 {
+  position: absolute; top: 40px; left: 30px;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(245,230,191,0.15);
+}
+.mayor-right-stripe {
+  position: absolute;
+  top: 0; bottom: 0; right: 0;
+  width: 55%;
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(255,255,255,0.04) 0px,
+    rgba(255,255,255,0.04) 2px,
+    transparent 2px,
+    transparent 12px
+  );
+}
+.mayor-card {
+  position: relative; z-index: 2;
+  width: 85%; max-width: 300px; margin-bottom: 0;
+}
+.mayor-card img {
+  width: 100%; display: block;
+  object-fit: cover; object-position: top;
+  height: 460px;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -8px 40px rgba(0,0,0,0.2);
+}
+.mayor-card-badge {
+  padding: 16px 20px;
+  background: #fff;
+  border-radius: 0 0 16px 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+.mayor-card-name {
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-size: 15px; font-weight: 800; color: #1a1a1a;
+}
+.mayor-card-title {
+  font-size: 11px; color: #51ABAC;
+  font-weight: 600; margin-top: 3px;
+  text-transform: uppercase; letter-spacing: 0.4px;
+}
+
+/* ══ STATS ════════════════════════════════════════════ */
+.stats { display: flex; justify-content: center; gap: 0; background: #fff; border-bottom: 1px solid #e5e7eb; flex-wrap: wrap; }
+.stat-item { padding: 24px 40px; text-align: center; border-right: 1px solid #f3f4f6; flex: 1; min-width: 140px; }
+.stat-item:last-child { border-right: none; }
+.stat-num { font-family: 'Crimson Pro', serif; font-size: 32px; font-weight: 800; color: #16a34a; line-height: 1; }
+.stat-lbl { font-size: 12px; color: #9ca3af; font-weight: 500; margin-top: 4px; text-transform: uppercase; letter-spacing: .5px; }
+
+/* ══ HOW IT WORKS ═════════════════════════════════════ */
+.section { padding: 60px 32px; max-width: 1100px; margin: 0 auto; }
+.section-title { font-family: 'Crimson Pro', serif; font-size: 32px; font-weight: 800; color: #1a4a2e; text-align: center; margin-bottom: 8px; }
+.section-sub { text-align: center; color: #6b7280; font-size: 15px; margin-bottom: 48px; }
+.steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
+.step-card {
+  background: #fff; border-radius: 16px; padding: 28px 22px;
+  text-align: center; border: 1px solid #dcfce7;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  transition: transform .2s, box-shadow .2s; position: relative;
+}
+.step-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+.step-num {
+  position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+  width: 28px; height: 28px; border-radius: 50%;
+  background: #22c55e; color: #fff; font-size: 13px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 8px rgba(34,197,94,0.4);
+}
+.step-icon { font-size: 36px; margin-bottom: 14px; display: block; }
+.step-title { font-weight: 700; color: #1a4a2e; font-size: 15px; margin-bottom: 8px; }
+.step-desc { font-size: 13px; color: #6b7280; line-height: 1.5; }
+
+/* ══ FAQ ══════════════════════════════════════════════ */
+.faq-section {
+  width: 100%;
+  background: #51ABAC;
+  padding: 80px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.faq-section::before {
+  content: '';
+  position: absolute;
+  top: -100px; left: 50%;
+  transform: translateX(-50%);
+  width: 600px; height: 400px;
+  background: radial-gradient(ellipse, rgba(255,255,255,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+.faq-inner { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+.faq-label {
+  text-align: center; font-size: 14px; font-weight: 700;
+  color: #fff; letter-spacing: 1px;
+  text-transform: uppercase; margin-bottom: 16px; opacity: 0.85;
+}
+.faq-title {
+  font-family: 'Crimson Pro', serif;
+  font-size: clamp(28px, 4vw, 44px); font-weight: 800;
+  color: #ffffff; text-align: center;
+  line-height: 1.25; margin-bottom: 52px;
+}
+.faq-list { display: flex; flex-direction: column; gap: 14px; }
+.faq-item {
+  background: rgba(255,255,255,0.12);
+  border: 1.5px solid rgba(255,255,255,0.25);
+  border-radius: 14px; overflow: hidden;
+  transition: border-color 0.25s, background 0.25s;
+}
+.faq-item.faq-active { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.5); }
+.faq-q {
+  width: 100%; display: flex; align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px; background: none; border: none;
+  cursor: pointer; text-align: left; gap: 16px;
+}
+.faq-q-text {
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-size: 16px; font-weight: 600;
+  color: #ffffff; line-height: 1.5; flex: 1;
+}
+.faq-icon {
+  flex-shrink: 0; width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.6);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 20px; font-weight: 300;
+  transition: transform 0.3s, background 0.3s;
+}
+.faq-item.faq-active .faq-icon { background: #fff; color: #51ABAC; transform: rotate(45deg); }
+.faq-answer {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+  padding: 0 24px;
+}
+.faq-item.faq-active .faq-answer { max-height: 300px; padding: 0 24px 20px; }
+.faq-a-text {
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-size: 14px; color: rgba(255,255,255,0.88);
+  line-height: 1.85;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  padding-top: 16px;
+}
+
+/* ══ NOTICE ═══════════════════════════════════════════ */
+.notice {
+  background: linear-gradient(135deg,#fef9c3,#fef3c7);
+  border: 1px solid #fde68a; border-radius: 14px;
+  padding: 24px 28px;
+  margin: 0 auto 40px;
+  display: flex; gap: 16px; align-items: flex-start;
+  max-width: 1036px;
+}
+.notice-icon { font-size: 28px; flex-shrink: 0; }
+.notice-title { font-weight: 700; color: #92400e; font-size: 15px; margin-bottom: 6px; }
+.notice-text { font-size: 13px; color: #a16207; line-height: 1.6; }
+
+/* ══ CTA ══════════════════════════════════════════════ */
+.cta { background: linear-gradient(135deg,#1a4a2e,#166534); color: #fff; padding: 60px 32px; text-align: center; }
+.cta-title { font-family: 'Crimson Pro', serif; font-size: 32px; font-weight: 800; margin-bottom: 12px; }
+.cta-sub { color: #bbf7d0; font-size: 15px; margin-bottom: 32px; }
+.cta-btn {
+  padding: 14px 40px; border-radius: 10px; border: none;
+  background: #22c55e; color: #fff;
+  font-weight: 700; font-size: 15px; cursor: pointer;
+  box-shadow: 0 6px 20px rgba(34,197,94,0.4); transition: all .2s;
+}
+.cta-btn:hover { transform: translateY(-2px); }
+
+/* ══ RESPONSIVE ═══════════════════════════════════════ */
+@media(max-width:900px) {
+  .mayor-section { flex-direction: column; }
+  .mayor-left { padding: 48px 24px; }
+  .mayor-right { width: 100%; min-height: 400px; padding-top: 40px; }
+  .mayor-card { width: 70%; max-width: 260px; }
+  .mayor-card img { height: 360px; }
+}
+@media(max-width:600px) {
+  .hero { padding: 60px 20px 60px; }
+  .hero-btns { flex-direction: column; align-items: center; }
+  .hero-btn-primary, .hero-btn-outline { width: 100%; max-width: 280px; }
+  .mayor-btns { flex-direction: column; }
+  .mayor-btn-primary { width: 100%; text-align: center; }
+  .mayor-card { width: 85%; }
+  .notice { margin: 0 16px 40px; }
+}

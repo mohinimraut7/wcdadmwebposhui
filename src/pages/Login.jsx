@@ -130,40 +130,7 @@ export default function Login() {
     navigate(route);
   };
 
-  // ══════════════════════════════════════════
-  //  PASSWORD LOGIN — works for ALL roles
-  //  Backend: POST /api/login (unified endpoint)
-  // ══════════════════════════════════════════
-  // const handleLogin = async (e) => {
-  //   e.preventDefault();
-  //   if (!form.userName.trim()) {
-  //     toast.error("Please enter your username");
-  //     return;
-  //   }
-  //   if (!form.password) {
-  //     toast.error("Please enter your password");
-  //     return;
-  //   }
-  //   try {
-  //     setLoading(true);
-  //     const res = await axiosInstance.post("/login", {
-  //       username: form.userName.trim(),
-  //       password: form.password,
-  //     });
-  //     const data = res.data;
-  //     if (!data.success) {
-  //       toast.error(data.message || "Login failed");
-  //       return;
-  //     }
-  //     saveAndRedirect(data);
-  //   } catch (error) {
-  //     const msg = error?.response?.data?.message || "Server error. Is the backend running?";
-  //     toast.error(msg);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
+  
 
   const handleLogin = async (e) => {
   e.preventDefault();

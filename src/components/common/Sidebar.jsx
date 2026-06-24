@@ -585,6 +585,7 @@ import {
   FileText,
   Map,
   Settings,
+  Clipboard,
   Zap,
 } from "lucide-react";
 
@@ -593,7 +594,7 @@ const menuItems = [
   { key: "inspections", label: "Inspections", icon: MapPin, path: "/posh-survey" },
   { key: "users", label: "Users", icon: Users, path: "/users" },
   { key: "organizations", label: "Organizations", icon: Building2, path: "/organizations" },
-    { key: "surveys", label: "Surveys", icon: FiClipboard , path: "/surveys" },
+    { key: "surveys", label: "Surveys", icon: Clipboard , path: "/surveys" },
 
   { key: "reports", label: "Reports", icon: FileText, path: "/reports" },
   { key: "districts", label: "Districts", icon: Map, path: "/districts" },

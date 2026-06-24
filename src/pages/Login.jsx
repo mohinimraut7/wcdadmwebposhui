@@ -49,6 +49,7 @@ const ROLE_CONFIG = [
   { key: "superadmin",       label: "Super Admin",        api: "/super-admin/login" },
   { key: "districtadmin",    label: "District Admin",     api: "/district-admin/login" },
   { key: "inspectionofficer",label: "Inspection Officer", api: "/inspection-officer/login" },
+   { key: "company",           label: "Company Login",      api: "" },
 ];
 
 // ─── Key officials shown in the right info panel ───────────────────────────
@@ -134,6 +135,15 @@ export default function Login() {
 
   const handleLogin = async (e) => {
   e.preventDefault();
+
+ // Company select kela tar redirect
+  if (selectedRole === "company") {
+    window.location.href = "/company-login";
+    return;
+  }
+
+
+
   if (!form.userName.trim()) { toast.error("Please enter your username"); return; }
   if (!form.password) { toast.error("Please enter your password"); return; }
 
@@ -259,7 +269,8 @@ export default function Login() {
   };
 
   const handleSsoLogin = () => {
-    toast.info("Government SSO login coming soon");
+    // toast.info("Government SSO login coming soon");
+     window.location.href = "/company-login";
   };
 
   return (
@@ -694,7 +705,7 @@ export default function Login() {
   <label className="wl-flbl">Login As</label>
   <div className="wl-fwrap">
     <span className="wl-ficon-box"><FiShield size={16} /></span>
-    <select
+    {/* <select
       className="wl-finput"
       value={selectedRole}
       onChange={(e) => setSelectedRole(e.target.value)}
@@ -703,7 +714,27 @@ export default function Login() {
       {ROLE_CONFIG.map((r) => (
         <option key={r.key} value={r.key}>{r.label}</option>
       ))}
-    </select>
+    </select> */}
+
+    <select
+  className="wl-finput"
+  value={selectedRole}
+  onChange={(e) => {
+    const val = e.target.value;
+    if (val === "company") {
+      window.location.href = "/company-login";
+      return;
+    }
+    setSelectedRole(val);
+  }}
+  style={{ cursor: "pointer" }}
+>
+  {ROLE_CONFIG.map((r) => (
+    <option key={r.key} value={r.key}>{r.label}</option>
+  ))}
+</select>
+
+
   </div>
 </div>
 
@@ -773,7 +804,7 @@ export default function Login() {
 
                 <button type="button" className="wl-sso-btn" onClick={handleSsoLogin}>
                   <FiBriefcase size={16} />
-                  Government SSO Login
+                  Company Login
                 </button>
 
                 <p className="wl-signup">

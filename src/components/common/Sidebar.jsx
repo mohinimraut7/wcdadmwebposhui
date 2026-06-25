@@ -572,6 +572,228 @@
 //   );
 // }
 
+// ============================================================
+
+// import React, { useState } from "react";
+// import { useNavigate, useLocation } from "react-router-dom";
+// import {
+//   ShieldCheck,
+//   LayoutGrid,
+//   MapPin,
+//   Users,
+//   Building2,
+//   FileText,
+//   Map,
+//   Settings,
+//   Clipboard,
+//   Zap,
+// } from "lucide-react";
+
+// const menuItems = [
+//   { key: "dashboard", label: "Dashboard", icon: LayoutGrid, path: "/dashboard" },
+//   // { key: "inspections", label: "Inspections", icon: MapPin, path: "/posh-survey" },
+//   { key: "users", label: "Users", icon: Users, path: "/users" },
+//   // { key: "organizations", label: "Organizations", icon: Building2, path: "/organizations" },
+//     { key: "surveys", label: "Surveys", icon: Clipboard , path: "/surveys" },
+
+//   // { key: "reports", label: "Reports", icon: FileText, path: "/reports" },
+//   // { key: "districts", label: "Districts", icon: Map, path: "/districts" },
+//     { key: "district-admins", label: "District Admins", icon: ShieldCheck, path: "/wcd-district-admin" }, // ← हे add कर
+//   { key: "inspection-officer", label: "Inspection Officers", icon: ShieldCheck, path: "/wcd-district-insofficer" }, // ← हे add कर
+
+//   // { key: "settings", label: "Settings", icon: Settings, path: "/settings" },
+// ];
+
+// export default function Sidebar({ active = "dashboard", onNavigate }) {
+//   const navigate = useNavigate();
+//   const location = useLocation();
+//   const [activeKey, setActiveKey] = useState(active);
+
+//   // Keep the highlighted item in sync with the actual URL,
+//   // so it stays correct even if the user navigates via back/forward.
+//   const currentItem =
+//     menuItems.find((item) => item.path === location.pathname) || null;
+//   const effectiveActiveKey = currentItem ? currentItem.key : activeKey;
+
+//   const handleClick = (item) => {
+//     setActiveKey(item.key);
+//     if (onNavigate) onNavigate(item.key);
+//     navigate(item.path);
+//   };
+
+//   return (
+//     <div
+//       style={{
+//         width: 264,
+//         minHeight: "100vh",
+//         background: "#363b7e",
+//         display: "flex",
+//         flexDirection: "column",
+//         fontFamily:
+//           "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+//         boxSizing: "border-box",
+//       }}
+//     >
+//       {/* Logo / brand */}
+//       <div
+//         style={{
+//           display: "flex",
+//           alignItems: "center",
+//           gap: 14,
+//           padding: "28px 24px 24px",
+//           borderBottom: "1px solid rgba(255,255,255,0.12)",
+//         }}
+//       >
+//         <div
+//           style={{
+//             width: 48,
+//             height: 48,
+//             borderRadius: "50%",
+//             background: "#d6356f",
+//             display: "flex",
+//             alignItems: "center",
+//             justifyContent: "center",
+//             flexShrink: 0,
+//           }}
+//         >
+//           <ShieldCheck size={24} color="#fff" />
+//         </div>
+//         <div>
+//           <div style={{ color: "#fff", fontSize: 19, fontWeight: 700, lineHeight: 1.2 }}>
+//             WCD
+//           </div>
+//           <div style={{ color: "rgba(255,255,255,0.65)", fontSize: 13, marginTop: 2 }}>
+//             Inspection Admin
+//           </div>
+//         </div>
+//       </div>
+
+//       {/* Main menu */}
+//       <div style={{ padding: "24px 16px", flex: 1 }}>
+//         <div
+//           style={{
+//             color: "rgba(255,255,255,0.45)",
+//             fontSize: 12,
+//             fontWeight: 700,
+//             letterSpacing: "1.5px",
+//             padding: "0 12px 14px",
+//           }}
+//         >
+//           MAIN MENU
+//         </div>
+
+//         <nav style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+//           {menuItems.map((item) => {
+//             const { key, label, icon: Icon } = item;
+//             const isActive = effectiveActiveKey === key;
+//             return (
+//               <button
+//                 key={key}
+//                 onClick={() => handleClick(item)}
+//                 style={{
+//                   display: "flex",
+//                   alignItems: "center",
+//                   gap: 14,
+//                   width: "100%",
+//                   padding: "13px 16px",
+//                   borderRadius: 14,
+//                   border: "none",
+//                   cursor: "pointer",
+//                   textAlign: "left",
+//                   background: isActive ? "#d6356f" : "transparent",
+//                   color: isActive ? "#fff" : "rgba(255,255,255,0.75)",
+//                   fontSize: 15.5,
+//                   fontWeight: isActive ? 600 : 500,
+//                   transition: "background 0.15s ease",
+//                   position: "relative",
+//                 }}
+//                 onMouseEnter={(e) => {
+//                   if (!isActive) e.currentTarget.style.background = "rgba(255,255,255,0.06)";
+//                 }}
+//                 onMouseLeave={(e) => {
+//                   if (!isActive) e.currentTarget.style.background = "transparent";
+//                 }}
+//               >
+//                 <Icon size={19} strokeWidth={1.8} />
+//                 <span style={{ flex: 1 }}>{label}</span>
+//                 {isActive && (
+//                   <span
+//                     style={{
+//                       width: 7,
+//                       height: 7,
+//                       borderRadius: "50%",
+//                       background: "#fff",
+//                       flexShrink: 0,
+//                     }}
+//                   />
+//                 )}
+//               </button>
+//             );
+//           })}
+//         </nav>
+//       </div>
+
+//       {/* Pro access card */}
+//       <div style={{ padding: "0 16px 28px" }}>
+//         <div
+//           style={{
+//             background: "rgba(255,255,255,0.07)",
+//             borderRadius: 18,
+//             padding: "22px 20px",
+//           }}
+//         >
+//           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 12 }}>
+//             <div
+//               style={{
+//                 width: 36,
+//                 height: 36,
+//                 borderRadius: "50%",
+//                 background: "#e8b75a",
+//                 display: "flex",
+//                 alignItems: "center",
+//                 justifyContent: "center",
+//                 flexShrink: 0,
+//               }}
+//             >
+//               <Zap size={17} color="#363b7e" fill="#363b7e" />
+//             </div>
+//             <span style={{ color: "#fff", fontSize: 16.5, fontWeight: 700 }}>
+//               Pro Access
+//             </span>
+//           </div>
+//           <p
+//             style={{
+//               color: "rgba(255,255,255,0.65)",
+//               fontSize: 13.5,
+//               lineHeight: 1.4,
+//               margin: "0 0 18px",
+//             }}
+//           >
+//             Unlock advanced reports &amp; analytics
+//           </p>
+//           <button
+//             style={{
+//               width: "100%",
+//               background: "linear-gradient(120deg, #e8b75a, #dca33e)",
+//               border: "none",
+//               borderRadius: 12,
+//               padding: "13px 0",
+//               color: "#363b7e",
+//               fontSize: 15,
+//               fontWeight: 700,
+//               cursor: "pointer",
+//             }}
+//           >
+//             Upgrade Now
+//           </button>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+
+// =================================================================
 
 
 import React, { useState } from "react";
@@ -589,30 +811,33 @@ import {
   Zap,
 } from "lucide-react";
 
-const menuItems = [
-  { key: "dashboard", label: "Dashboard", icon: LayoutGrid, path: "/dashboard" },
-  { key: "inspections", label: "Inspections", icon: MapPin, path: "/posh-survey" },
-  { key: "users", label: "Users", icon: Users, path: "/users" },
-  { key: "organizations", label: "Organizations", icon: Building2, path: "/organizations" },
-    { key: "surveys", label: "Surveys", icon: Clipboard , path: "/surveys" },
-
-  { key: "reports", label: "Reports", icon: FileText, path: "/reports" },
-  { key: "districts", label: "Districts", icon: Map, path: "/districts" },
-    { key: "district-admins", label: "District Admins", icon: ShieldCheck, path: "/wcd-district-admin" }, // ← हे add कर
-  { key: "inspection-officer", label: "Inspection Officers", icon: ShieldCheck, path: "/wcd-district-insofficer" }, // ← हे add कर
-
-  { key: "settings", label: "Settings", icon: Settings, path: "/settings" },
+const ALL_MENU_ITEMS = [
+  { key: "dashboard",          label: "Dashboard",           icon: LayoutGrid,  path: "/dashboard",               roles: ["superadmin","stateadmin","districtadmin","inspectionofficer"] },
+  { key: "users",              label: "Users",               icon: Users,        path: "/users",                   roles: ["superadmin","stateadmin","districtadmin"] },
+  { key: "surveys",            label: "Surveys",             icon: Clipboard,    path: "/surveys",                 roles: ["superadmin","stateadmin","districtadmin","inspectionofficer"] },
+  { key: "district-admins",   label: "District Admins",     icon: ShieldCheck,  path: "/wcd-district-admin",      roles: ["superadmin","stateadmin","districtadmin"] },
+  { key: "inspection-officer", label: "Inspection Officers", icon: ShieldCheck,  path: "/wcd-district-insofficer", roles: ["superadmin","stateadmin","districtadmin"] },
 ];
 
+const getAuthUser = () => {
+  try { return JSON.parse(localStorage.getItem("authUser") || "{}"); }
+  catch { return {}; }
+};
+
 export default function Sidebar({ active = "dashboard", onNavigate }) {
-  const navigate = useNavigate();
-  const location = useLocation();
+  const navigate  = useNavigate();
+  const location  = useLocation();
   const [activeKey, setActiveKey] = useState(active);
 
-  // Keep the highlighted item in sync with the actual URL,
-  // so it stays correct even if the user navigates via back/forward.
-  const currentItem =
-    menuItems.find((item) => item.path === location.pathname) || null;
+  const authUser = getAuthUser();
+  const userRole = authUser?.role || authUser?.userRole || localStorage.getItem("userRole") || "";
+
+  // Role-based filter
+  const menuItems = ALL_MENU_ITEMS.filter((item) =>
+    item.roles.includes(userRole)
+  );
+
+  const currentItem       = menuItems.find((item) => item.path === location.pathname) || null;
   const effectiveActiveKey = currentItem ? currentItem.key : activeKey;
 
   const handleClick = (item) => {
@@ -629,8 +854,7 @@ export default function Sidebar({ active = "dashboard", onNavigate }) {
         background: "#363b7e",
         display: "flex",
         flexDirection: "column",
-        fontFamily:
-          "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+        fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
         boxSizing: "border-box",
       }}
     >
@@ -646,24 +870,18 @@ export default function Sidebar({ active = "dashboard", onNavigate }) {
       >
         <div
           style={{
-            width: 48,
-            height: 48,
-            borderRadius: "50%",
+            width: 48, height: 48, borderRadius: "50%",
             background: "#d6356f",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            display: "flex", alignItems: "center", justifyContent: "center",
             flexShrink: 0,
           }}
         >
           <ShieldCheck size={24} color="#fff" />
         </div>
         <div>
-          <div style={{ color: "#fff", fontSize: 19, fontWeight: 700, lineHeight: 1.2 }}>
-            WCD
-          </div>
+          <div style={{ color: "#fff", fontSize: 19, fontWeight: 700, lineHeight: 1.2 }}>WCD</div>
           <div style={{ color: "rgba(255,255,255,0.65)", fontSize: 13, marginTop: 2 }}>
-            Inspection Admin
+            {userRole === "inspectionofficer" ? "Inspection Officer" : "Inspection Admin"}
           </div>
         </div>
       </div>
@@ -672,11 +890,8 @@ export default function Sidebar({ active = "dashboard", onNavigate }) {
       <div style={{ padding: "24px 16px", flex: 1 }}>
         <div
           style={{
-            color: "rgba(255,255,255,0.45)",
-            fontSize: 12,
-            fontWeight: 700,
-            letterSpacing: "1.5px",
-            padding: "0 12px 14px",
+            color: "rgba(255,255,255,0.45)", fontSize: 12, fontWeight: 700,
+            letterSpacing: "1.5px", padding: "0 12px 14px",
           }}
         >
           MAIN MENU
@@ -691,21 +906,13 @@ export default function Sidebar({ active = "dashboard", onNavigate }) {
                 key={key}
                 onClick={() => handleClick(item)}
                 style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 14,
-                  width: "100%",
-                  padding: "13px 16px",
-                  borderRadius: 14,
-                  border: "none",
-                  cursor: "pointer",
-                  textAlign: "left",
+                  display: "flex", alignItems: "center", gap: 14,
+                  width: "100%", padding: "13px 16px", borderRadius: 14,
+                  border: "none", cursor: "pointer", textAlign: "left",
                   background: isActive ? "#d6356f" : "transparent",
                   color: isActive ? "#fff" : "rgba(255,255,255,0.75)",
-                  fontSize: 15.5,
-                  fontWeight: isActive ? 600 : 500,
-                  transition: "background 0.15s ease",
-                  position: "relative",
+                  fontSize: 15.5, fontWeight: isActive ? 600 : 500,
+                  transition: "background 0.15s ease", position: "relative",
                 }}
                 onMouseEnter={(e) => {
                   if (!isActive) e.currentTarget.style.background = "rgba(255,255,255,0.06)";
@@ -717,15 +924,7 @@ export default function Sidebar({ active = "dashboard", onNavigate }) {
                 <Icon size={19} strokeWidth={1.8} />
                 <span style={{ flex: 1 }}>{label}</span>
                 {isActive && (
-                  <span
-                    style={{
-                      width: 7,
-                      height: 7,
-                      borderRadius: "50%",
-                      background: "#fff",
-                      flexShrink: 0,
-                    }}
-                  />
+                  <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#fff", flexShrink: 0 }} />
                 )}
               </button>
             );
@@ -735,53 +934,28 @@ export default function Sidebar({ active = "dashboard", onNavigate }) {
 
       {/* Pro access card */}
       <div style={{ padding: "0 16px 28px" }}>
-        <div
-          style={{
-            background: "rgba(255,255,255,0.07)",
-            borderRadius: 18,
-            padding: "22px 20px",
-          }}
-        >
+        <div style={{ background: "rgba(255,255,255,0.07)", borderRadius: 18, padding: "22px 20px" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 12 }}>
             <div
               style={{
-                width: 36,
-                height: 36,
-                borderRadius: "50%",
+                width: 36, height: 36, borderRadius: "50%",
                 background: "#e8b75a",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexShrink: 0,
+                display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
               }}
             >
               <Zap size={17} color="#363b7e" fill="#363b7e" />
             </div>
-            <span style={{ color: "#fff", fontSize: 16.5, fontWeight: 700 }}>
-              Pro Access
-            </span>
+            <span style={{ color: "#fff", fontSize: 16.5, fontWeight: 700 }}>Pro Access</span>
           </div>
-          <p
-            style={{
-              color: "rgba(255,255,255,0.65)",
-              fontSize: 13.5,
-              lineHeight: 1.4,
-              margin: "0 0 18px",
-            }}
-          >
+          <p style={{ color: "rgba(255,255,255,0.65)", fontSize: 13.5, lineHeight: 1.4, margin: "0 0 18px" }}>
             Unlock advanced reports &amp; analytics
           </p>
           <button
             style={{
               width: "100%",
               background: "linear-gradient(120deg, #e8b75a, #dca33e)",
-              border: "none",
-              borderRadius: 12,
-              padding: "13px 0",
-              color: "#363b7e",
-              fontSize: 15,
-              fontWeight: 700,
-              cursor: "pointer",
+              border: "none", borderRadius: 12, padding: "13px 0",
+              color: "#363b7e", fontSize: 15, fontWeight: 700, cursor: "pointer",
             }}
           >
             Upgrade Now

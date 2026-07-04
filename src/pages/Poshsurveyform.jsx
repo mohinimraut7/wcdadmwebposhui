@@ -1446,6 +1446,7 @@ export default function PoshSurveyForm({ lang = "en", onLangChange }) {
   const [submitted, setSubmitted]           = useState(false);
   const [canEdit, setCanEdit]               = useState(false);
   const [reviewStatus, setReviewStatus]     = useState(null);
+   const [finalRemark, setFinalRemark]       = useState(null);
   const [editableIds, setEditableIds]       = useState(new Set());
   const [officerComments, setOfficerComments] = useState({});
 
@@ -1466,6 +1467,7 @@ export default function PoshSurveyForm({ lang = "en", onLangChange }) {
           setSubmitted(true);
           setCanEdit(!!data.canEdit);
           setReviewStatus(data.status || null);
+           setFinalRemark(data.finalremark || null);
 
           if (data.answers) {
             const prefilled = {};
@@ -1733,9 +1735,14 @@ export default function PoshSurveyForm({ lang = "en", onLangChange }) {
       /* ── Banners ── */
       .psf-banner { display: flex; gap: 12px; align-items: flex-start; border-radius: 14px; padding: 16px 18px; margin-bottom: 20px; }
       .psf-banner.info { background: rgba(44,61,131,0.06); border-left: 3px solid ${BLUE}; }
-      .psf-banner.warn { background: #fef3c7; border-left: 3px solid ${AMBER}; }
+      
+
+.psf-banner.warn { background: #fef3c7; border-left: 3px solid ${AMBER}; }
+      .psf-banner.reject { background: #fee2e2; border-left: 3px solid #dc2626; }
       .psf-banner-text { flex: 1; font-size: 13px; color: ${BLUE_DEEP}; line-height: 1.55; font-weight: 600; }
       .psf-banner.warn .psf-banner-text { color: #92400e; }
+      .psf-banner.reject .psf-banner-text { color: #b91c1c; }
+
 
       /* ── Read-only Q&A list ── */
       .psf-ro-part-title { font-size: 13.5px; font-weight: 800; color: ${BLUE_DEEP}; margin: 18px 0 10px; }
@@ -1903,7 +1910,7 @@ export default function PoshSurveyForm({ lang = "en", onLangChange }) {
                 <span className="psf-version-pill">v2.0</span>
               </div>
 
-              <div className="psf-banner info">
+              {/* <div className="psf-banner info">
                 <FiLockSolid size={18} color={BLUE_DEEP} style={{ flexShrink: 0, marginTop: 2 }} />
                 <div className="psf-banner-text">
                   {reviewStatus === "compiled"
@@ -1914,7 +1921,35 @@ export default function PoshSurveyForm({ lang = "en", onLangChange }) {
                         ? "Your survey has already been submitted and is awaiting Inspection Officer review. It cannot be edited right now."
                         : "तुमचे सर्वेक्षण आधीच सबमिट झाले आहे आणि निरीक्षण अधिकाऱ्याच्या पुनरावलोकनाच्या प्रतीक्षेत आहे. सध्या ते संपादित करता येणार नाही.")}
                 </div>
+              </div> */}
+
+
+              <div className={`psf-banner ${reviewStatus === "rejected" ? "reject" : "info"}`}>
+                <FiLockSolid size={18} color={reviewStatus === "rejected" ? "#b91c1c" : BLUE_DEEP} style={{ flexShrink: 0, marginTop: 2 }} />
+                <div className="psf-banner-text">
+                  {reviewStatus === "compiled"
+                    ? (lang === "en"
+                        ? "Your survey has been approved. This is a view-only copy."
+                        : "तुमचे सर्वेक्षण मंजूर झाले आहे. ही फक्त पाहण्यासाठीची प्रत आहे.")
+                    : reviewStatus === "rejected"
+                    ? (lang === "en"
+                        ? "Your survey has been PERMANENTLY REJECTED after re-inspection. It cannot be edited or resubmitted."
+                        : "पुनर्तपासणीनंतर तुमचे सर्वेक्षण कायमचे नाकारले गेले आहे. ते संपादित किंवा पुन्हा सबमिट करता येणार नाही.")
+                    : (lang === "en"
+                        ? "Your survey has already been submitted and is awaiting Inspection Officer review. It cannot be edited right now."
+                        : "तुमचे सर्वेक्षण आधीच सबमिट झाले आहे आणि निरीक्षण अधिकाऱ्याच्या पुनरावलोकनाच्या प्रतीक्षेत आहे. सध्या ते संपादित करता येणार नाही.")}
+                </div>
               </div>
+
+              {reviewStatus === "rejected" && finalRemark && (
+                <div className="psf-banner reject" style={{ marginTop: -8 }}>
+                  <FiAlertCircle size={18} color="#b91c1c" style={{ flexShrink: 0, marginTop: 2 }} />
+                  <div className="psf-banner-text">
+                    <strong>{lang === "en" ? "Reason: " : "कारण: "}</strong>
+                    {finalRemark}
+                  </div>
+                </div>
+              )}
 
               {poshQuestions.parts.map((part, pIdx) => (
                 <div key={pIdx}>

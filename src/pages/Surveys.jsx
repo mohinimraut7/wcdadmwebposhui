@@ -71,6 +71,9 @@ export default function Surveys() {
   const [location, setLocation]                     = useState({ lat: null, lng: null, loading: true, error: "" });
   const [questionReviews, setQuestionReviews]       = useState({});
   const [submittingReview, setSubmittingReview]     = useState(false);
+   const [officerPhoto, setOfficerPhoto]         = useState(null);
+  const [officerDocument, setOfficerDocument]   = useState(null);
+  const [officerSignature, setOfficerSignature] = useState(null);
 
   const authUser            = getAuthUser();
   const userRole            = authUser?.role     || "";
@@ -110,6 +113,9 @@ export default function Surveys() {
     setCompanyAnswers({});
     setFinalremark("");
     setCasetype("case1");
+     setOfficerPhoto(null);
+    setOfficerDocument(null);
+    setOfficerSignature(null);
 
     const oName = authUser?.fullName || authUser?.fullname || authUser?.userName || authUser?.username || "";
     setOfficername(oName);
@@ -192,30 +198,66 @@ export default function Surveys() {
       return;
     }
 
-    const payload = {
-      orgid:              reviewModal.orgid,
-      casetype,
-      officername:        officername.trim(),
-      officerdesignation: officerdesignation.trim(),
-      finalremark:        finalremark.trim(),
-      latitude:           location.lat ?? 0,
-      longitude:          location.lng ?? 0,
-      questionReviews:    questionsToReview.map((q) => ({
-        questionid: q.no,
-        answer:     questionReviews[q.no]?.answer,
-        comment:    questionReviews[q.no]?.comment || "",
-      })),
-    };
+
+
+
+    // const payload = {
+    //   orgid:              reviewModal.orgid,
+    //   casetype,
+    //   officername:        officername.trim(),
+    //   officerdesignation: officerdesignation.trim(),
+    //   finalremark:        finalremark.trim(),
+    //   latitude:           location.lat ?? 0,
+    //   longitude:          location.lng ?? 0,
+    //   questionReviews:    questionsToReview.map((q) => ({
+    //     questionid: q.no,
+    //     answer:     questionReviews[q.no]?.answer,
+    //     comment:    questionReviews[q.no]?.comment || "",
+    //   })),
+    // };
+
+    // setSubmittingReview(true);
+    // try {
+    //   const res = await axiosInstance.post("/officer/report/quick-review", payload);
+
+
+const reviewsArray = questionsToReview.map((q) => ({
+      questionid: q.no,
+      answer:     questionReviews[q.no]?.answer,
+      comment:    questionReviews[q.no]?.comment || "",
+    }));
+
+    const fd = new FormData();
+    fd.append("orgid",              reviewModal.orgid);
+    fd.append("casetype",           casetype);
+    fd.append("officername",        officername.trim());
+    fd.append("officerdesignation", officerdesignation.trim());
+    fd.append("finalremark",        finalremark.trim());
+    fd.append("latitude",           location.lat ?? 0);
+    fd.append("longitude",          location.lng ?? 0);
+    fd.append("questionReviews",    JSON.stringify(reviewsArray)); // ✅ JSON string
+
+    // ✅ ३ फाईल्स — सर्व ऑप्शनल, दिल्या तरच जोडायच्या
+    if (officerPhoto)     fd.append("officerPhoto", officerPhoto);
+    if (officerDocument)  fd.append("officerDocument", officerDocument);
+    if (officerSignature) fd.append("officerSignature", officerSignature);
 
     setSubmittingReview(true);
     try {
-      const res = await axiosInstance.post("/officer/report/quick-review", payload);
+      const res = await axiosInstance.post("/officer/report/quick-review", fd, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
+
       if (res.data.success) {
         const fs = res.data.finalstatus;
         if (fs === "compiled")      toast.success("✅ Survey Complied! Final submission done.");
         else if (fs === "rejected") toast.error("❌ Survey Permanently Rejected.");
         else                        toast.success("📋 Review submitted. 15-day notice issued.");
         setReviewModal(null);
+         setOfficerPhoto(null);
+        setOfficerDocument(null);
+        setOfficerSignature(null);
         fetchSurveys();
       } else {
         toast.error(res.data.message || "Review submit failed");
@@ -731,6 +773,44 @@ export default function Surveys() {
                 }
               </div>
             )}
+
+            <div className="rv-divider">Officer Uploads (Optional)</div>
+            <div className="rv-two-col" style={{gridTemplateColumns:"1fr 1fr 1fr"}}>
+              <div>
+                <label className="rv-label">📷 Photo</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="rv-input"
+                  style={{padding:"8px 10px", fontSize:12}}
+                  onChange={(e) => setOfficerPhoto(e.target.files[0] || null)}
+                />
+                {officerPhoto && <div style={{fontSize:11,color:"#15803d",marginTop:4}}>✓ {officerPhoto.name}</div>}
+              </div>
+              <div>
+                <label className="rv-label">📄 Document</label>
+                <input
+                  type="file"
+                  accept="image/*,application/pdf"
+                  className="rv-input"
+                  style={{padding:"8px 10px", fontSize:12}}
+                  onChange={(e) => setOfficerDocument(e.target.files[0] || null)}
+                />
+                {officerDocument && <div style={{fontSize:11,color:"#15803d",marginTop:4}}>✓ {officerDocument.name}</div>}
+              </div>
+              <div>
+                <label className="rv-label">✍️ Signature</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="rv-input"
+                  style={{padding:"8px 10px", fontSize:12}}
+                  onChange={(e) => setOfficerSignature(e.target.files[0] || null)}
+                />
+                {officerSignature && <div style={{fontSize:11,color:"#15803d",marginTop:4}}>✓ {officerSignature.name}</div>}
+              </div>
+            </div>
+
 
             <label className="rv-label" style={{marginTop:4}}>Overall Remark / Observation</label>
             <textarea

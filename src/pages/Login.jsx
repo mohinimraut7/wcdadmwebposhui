@@ -36,6 +36,8 @@ import infoPanelBg from "../assets/background2.jpg";
 import wcdLogo from "../assets/wcdlogo.jpg";
 import shasanLogo from "../assets/maharashtrashasan.jfif";
 import satyaLogo from "../assets/satya.png";
+import CompanyNavbar from "../components/common/ComapnyNavbar";
+import OfficerNavbar from "../components/common/OfficerNavbar";
 
 // ─── Theme tokens ──────────────────────────────────────────────────────────
 const PINK = "#CD366B";
@@ -643,7 +645,7 @@ export default function Login() {
 
       <div className="wl-page">
         {/* ── Top government header ── */}
-        <header className="wl-topbar">
+        {/* <header className="wl-topbar">
           <div className="wl-topbar-left">
             <div className="wl-topbar-icon"><FiShield size={16} /></div>
             <span className="wl-topbar-title">Government of Maharashtra</span>
@@ -656,7 +658,9 @@ export default function Login() {
             <span className="wl-topbar-link">Help</span>
             <span className="wl-topbar-link">Contact</span>
           </div>
-        </header>
+        </header> */}
+
+        <OfficerNavbar/>
 
         {/* ── Main content ── */}
         <main className="wl-main">
@@ -991,8 +995,8 @@ export default function Login() {
           </div>
         </main>
 
-        {/* ── Footer ── */}
         <footer className="wl-footer">
+        {/* ── Footer ── */}
           <span>© 2025 WCD Maharashtra. All rights reserved.</span>
           <div className="wl-footer-links">
             <a href="#privacy">Privacy Policy</a>

@@ -420,6 +420,12 @@ const reviewsArray = questionsToReview.map((q) => ({
         .rv-input { width:100%; padding:11px 14px; border:1.5px solid rgba(44,61,131,0.15); border-radius:12px; font-size:14px; color:${BLUE_DEEP}; font-family:'Inter',sans-serif; outline:none; background:#fff; transition:all .2s; }
         .rv-input:focus { border-color:${PINK}; box-shadow:0 0 0 3px rgba(205,54,107,0.12); }
         .rv-input::placeholder { color:rgba(44,61,131,0.35); }
+        .rv-input:disabled {
+  background-color: #f0f0f3;
+  color: #6b6f7d;
+  cursor: not-allowed;
+  opacity: 1;
+}
         .rv-divider { font-size:10.5px; font-weight:800; letter-spacing:0.8px; text-transform:uppercase; color:rgba(44,61,131,0.35); margin:4px 0 14px; display:flex; align-items:center; gap:10px; }
         .rv-divider::after { content:''; flex:1; height:1px; background:rgba(44,61,131,0.08); }
         /* ── Question rows — company answer LEFT, officer review RIGHT ── */
@@ -691,11 +697,11 @@ const reviewsArray = questionsToReview.map((q) => ({
             <div className="rv-two-col">
               <div>
                 <label className="rv-label">Officer Name</label>
-                <input className="rv-input" placeholder="Full Name" value={officername} onChange={e=>setOfficername(e.target.value)}/>
+                <input className="rv-input" placeholder="Full Name" value={officername} onChange={e=>setOfficername(e.target.value)} disabled />
               </div>
               <div>
                 <label className="rv-label">Designation</label>
-                <input className="rv-input" placeholder="Inspection Officer" value={officerdesignation} onChange={e=>setOfficerdesignation(e.target.value)}/>
+                <input className="rv-input" placeholder="Inspection Officer" value={officerdesignation} onChange={e=>setOfficerdesignation(e.target.value)} disabled />
               </div>
             </div>
 

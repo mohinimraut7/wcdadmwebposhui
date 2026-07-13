@@ -969,6 +969,10 @@
 
 // =================================
 import React, { useState } from "react";
+import wcdlogo from "../../assets/wcdlogo.jpeg";
+import { useSelector, useDispatch } from "react-redux";
+
+
 import { useNavigate, useLocation } from "react-router-dom";
 import {
   ShieldCheck,
@@ -1014,8 +1018,34 @@ export default function Sidebar({ active = "dashboard", onNavigate }) {
   const location  = useLocation();
   const [activeKey, setActiveKey] = useState(active);
 
-  const authUser = getAuthUser();
+  
+
+//   const authUser = getAuthUser();
+
+//   const userRole = authUser?.role || authUser?.userRole || localStorage.getItem("userRole") || "";
+
+//   const displayName = user?.fullName || user?.userName || authUser?.fullName || authUser?.userName || "Admin";  // 👈 ADD
+
+// const handleLogout = () => {                                               // 👈 ADD THIS
+//   // localStorage.removeItem("authUser");
+//    dispatch(logout());
+//   navigate("/login");
+// };
+
+
+
+const authUser = getAuthUser();
+  const { user } = useSelector((state) => state.auth);
+
   const userRole = authUser?.role || authUser?.userRole || localStorage.getItem("userRole") || "";
+  const displayName = authUser?.fullName || authUser?.userName || "Admin";
+
+  const handleLogout = () => {
+    localStorage.removeItem("authUser");
+    navigate("/login");
+  };
+
+
 
   const menuItems = ALL_MENU_ITEMS.filter((item) =>
     item.roles.includes(userRole)
@@ -1041,9 +1071,44 @@ export default function Sidebar({ active = "dashboard", onNavigate }) {
     >
       {/* Logo */}
       <div style={{ display:"flex", alignItems:"center", gap:14, padding:"28px 24px 24px", borderBottom:"1px solid rgba(255,255,255,0.12)" }}>
-        <div style={{ width:48, height:48, borderRadius:"50%", background:"#d6356f", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
+        {/* <div style={{ width:48, height:48, borderRadius:"50%", background:"#d6356f", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
           <ShieldCheck size={24} color="#fff" />
-        </div>
+        </div> */}
+
+<div
+  style={{
+    width: 48,
+    height: 48,
+    borderRadius: "50%",
+    background: "#d6356f",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexShrink: 0,
+    overflow: "hidden",
+  }}
+>
+  {/* <img
+    src={wcdlogo}
+    alt="WCD Logo"
+    style={{
+      width: "32px",
+      height: "32px",
+      objectFit: "contain",
+    }}
+  /> */}
+<img
+  src={wcdlogo}
+  alt="WCD Logo"
+  style={{
+    width: "48px",
+    height: "48px",
+    objectFit: "contain",
+  }}
+/>
+
+</div>
+
         <div>
           <div style={{ color:"#fff", fontSize:19, fontWeight:700, lineHeight:1.2 }}>WCD</div>
           <div style={{ color:"rgba(255,255,255,0.65)", fontSize:13, marginTop:2 }}>
@@ -1096,7 +1161,7 @@ export default function Sidebar({ active = "dashboard", onNavigate }) {
       </div>
 
       {/* Pro Access */}
-      <div style={{ padding:"0 16px 28px" }}>
+      {/* <div style={{ padding:"0 16px 28px" }}>
         <div style={{ background:"rgba(255,255,255,0.07)", borderRadius:18, padding:"22px 20px" }}>
           <div style={{ display:"flex", alignItems:"center", gap:12, marginBottom:12 }}>
             <div style={{ width:36, height:36, borderRadius:"50%", background:"#e8b75a", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
@@ -1111,7 +1176,63 @@ export default function Sidebar({ active = "dashboard", onNavigate }) {
             Upgrade Now
           </button>
         </div>
+      </div> */}
+
+      <div style={{ padding: "0 16px 28px" }}>
+  <div
+    style={{
+      background: "rgba(255,255,255,0.07)",
+      borderRadius: 18,
+      padding: "22px 20px",
+    }}
+  >
+    {/* User Info */}
+    <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 12 }}>
+      <div
+        style={{
+          width: 36, height: 36, borderRadius: "50%",
+          background: "#e8b75a",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          flexShrink: 0, color: "#363b7e", fontWeight: 700, fontSize: 16,
+        }}
+      >
+        {displayName?.charAt(0)?.toUpperCase()}
       </div>
+
+      <div>
+        <div style={{ fontSize: 16.5, fontWeight: 700, color: "#fff" }}>
+          {displayName}
+        </div>
+        <div style={{ fontSize: 13, color: "rgba(255,255,255,0.65)", marginTop: 2 }}>
+          {user?.role || authUser?.role || "Admin"}
+        </div>
+      </div>
+    </div>
+
+    {/* Logout */}
+    <button
+      onClick={handleLogout}
+      style={{
+        width: "100%",
+        background: "linear-gradient(120deg, #e8b75a, #dca33e)",
+        border: "none",
+        borderRadius: 12,
+        padding: "13px 0",
+        color: "#363b7e",
+        fontSize: 15,
+        fontWeight: 700,
+        cursor: "pointer",
+      }}
+    >
+      Logout
+    </button>
+  </div>
+</div>
+
+<div style={{ fontSize: 13, color: "rgba(255,255,255,0.65)", marginTop: 2 }}>
+  {authUser?.role || "Admin"}   {/* 👈 user? -> authUser? */}
+</div>
+      
     </div>
   );
 }
